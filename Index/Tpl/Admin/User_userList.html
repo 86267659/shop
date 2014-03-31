@@ -1,48 +1,43 @@
-<h2>Tables section</h2>          
+<h2>会员管理</h2>          
 <table id="rounded-corner">
     <thead>
     	<tr>
         	<th></th>
-            <th>Product</th>
-            <th>Details</th>
-            <th>Price</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>User</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>UID</th>
+            <th>用户名</th>
+            <th>注册时间</th>
+            <th>注册IP</th>
+            <th>登录时间</th>
+            <th>登录IP</th>
+            <th>是否管理员</th>
+            <th>编辑</th>
+            <th>删除</th>
         </tr>
     </thead>
         <tfoot>
     	<tr>
-        	<td colspan="12">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</td>
+        	<td colspan="12">分页</td>
         </tr>
     </tfoot>
     <tbody>
-    	<tr class="odd">
+        <foreach name="users" key='k' item="user">
+            <if condition="$k%2 eq 1">
+        	   <tr class="odd">
+            <else/>
+               <tr class="even">
+            </if>
         	<td><input type="checkbox" name="" /></td>
-            <td>Box Software</td>
-            <td>Lorem ipsum dolor sit amet consectetur</td>
-            <td>45$</td>
-            <td>10/04/2011</td>
-            <td>web design</td>
-            <td>Alex</td>
+            <td><{$user.id}></td>
+            <td><{$user.username}></td>
+            <td><{$user.rtime|date="Y-m-d",###}></td>
+            <td><{$user.rip|long2ip}></td>
+            <td><{$user.logintime|date="Y-m-d",###}></td>
+            <td><{$user.loginip|long2ip}></td>
+            <td><font color='red'><{$user.ismanager}></forn></td>
             <td><a href="#"><img src="__PUBLIC__/Admin/images/edit.png" alt="" title="" border="0" /></a></td>
             <td><a href="#"><img src="__PUBLIC__/Admin/images/trash.gif" alt="" title="" border="0" /></a></td>
-        </tr>
-    	<tr class="even">
-        	<td><input type="checkbox" name="" /></td>
-            <td>Trial Software</td>
-            <td>Lorem ipsum dolor sit amet consectetur</td>
-            <td>155$</td>
-            <td>12/04/2011</td>
-            <td>web design</td>
-            <td>Carrina</td>
-            <td><a href="#"><img src="__PUBLIC__/Admin/images/edit.png" alt="" title="" border="0" /></a></td>
-            <td><a href="#"><img src="__PUBLIC__/Admin/images/trash.gif" alt="" title="" border="0" /></a></td>
-        </tr>
-  
-        
+        </tr>  
+        </foreach>
     </tbody>
 </table>
 

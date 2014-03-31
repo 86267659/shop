@@ -26,7 +26,7 @@ $(".trigger").click(function(){
 	<div class="header">
     <div class="title"><a href="#">《捷哥浅谈PHP》商城后台管理系统</a></div>
     
-    <div class="header_right">欢迎您回来 Admin, <a href="#" class="settings">设置</a> <a href="#" class="logout">退出</a> </div>
+    <div class="header_right">欢迎您回来 <?php echo (session('username')); ?>, <a href="#" class="settings">设置</a> <a href="<?php echo U('Admin/Index/logout','');?>" class="logout">退出</a> </div>
     
     <div class="menu">
     <ul>
@@ -45,7 +45,7 @@ $(".trigger").click(function(){
     <div class="submenu">
     <ul>
     <li><a href="#" class="selected">网站配置</a></li>
-    <li><a href="#">添加用户</a></li>
+    <li><a href="#">添加会员</a></li>
     <li><a href="#">添加分类</a></li>
     </ul>
     </div>          
@@ -62,17 +62,40 @@ $(".trigger").click(function(){
     </ul>
     
     <div id="tab2" class="tabcontent">
-        <ul class="lists">
-        <li>Consectetur adipisicing elit  error sit voluptatem accusantium doloremqu sed</li>
-        <li>Sed do eiusmod tempor incididunt</li>
-        <li>Ut enim ad minim veniam is iste natus error sit</li>
-        <li>Consectetur adipisicing elit sed</li>
-        <li>Sed do eiusmod tempor  error sit voluptatem accus antium dolor emqu incididunt</li>
-        <li>Ut enim ad minim veniam</li>
-        <li>Consectetur adipisi  error sit voluptatem accusantium doloremqu cing elit sed</li>
-        <li>Sed do eiusmod tempor in is iste natus error sit cididunt</li>
-        <li>Ut enim ad minim ve is iste natus error sitniam</li>
-        </ul>
+        <table class="env">
+            <tr>
+                <td>服务器操作系统:</td>
+                <td><?php echo ($_ENV['OS']); ?></td>
+            </tr>
+            <tr>
+                <td>PHP 版本</td>
+                <td><?php echo (PHP_VERSION); ?><td>
+            </tr>
+            <tr>
+                <td>GD 版本</td>
+                <td><?php echo ($gdVersion); ?></td>
+            </tr>
+            <tr>
+                <td>编码:</td>
+                <td><?php echo mb_detect_encoding(file_get_contents(__FILE__));?></td>
+            </tr>
+            <tr>
+                <td>Web 服务器:</td>
+                <td><?php echo ($_SERVER['SERVER_SOFTWARE']); ?></td>
+            </tr>
+            <tr>
+                <td>MySQL 版本:</td>
+                <td><?php echo mysql_get_server_info();?></td>
+            </tr>
+            <tr>
+                <td>时区设置:</td>
+                <td><?php echo date_default_timezone_get();?></td>
+            </tr>
+            <tr>
+                <td>文件上传的最大大小:</td>
+                <td><?php echo ini_get('upload_max_filesize');?></td>
+            </tr>
+        </table>
     </div>
 
     <div id="tab3" class="tabcontent">
@@ -112,8 +135,8 @@ $(".trigger").click(function(){
     <h2>会员管理</h2>
     
         <ul>
-            <li><a href="#" class="selected">会员列表</a></li>
-            <li><a href="#">添加会员</a></li>
+            <li><a href="<?php echo U('User/userList');?>" class="selected">会员列表</a></li>
+            <li><a href="<?php echo U('User/userAdd');?>">添加会员</a></li>
             <li><a href="#">修改密码</a></li>
             <li><a href="#">设置管理员</a></li>
         </ul>

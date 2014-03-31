@@ -5,17 +5,40 @@
     </ul>
     
     <div id="tab2" class="tabcontent">
-        <ul class="lists">
-        <li>Consectetur adipisicing elit  error sit voluptatem accusantium doloremqu sed</li>
-        <li>Sed do eiusmod tempor incididunt</li>
-        <li>Ut enim ad minim veniam is iste natus error sit</li>
-        <li>Consectetur adipisicing elit sed</li>
-        <li>Sed do eiusmod tempor  error sit voluptatem accus antium dolor emqu incididunt</li>
-        <li>Ut enim ad minim veniam</li>
-        <li>Consectetur adipisi  error sit voluptatem accusantium doloremqu cing elit sed</li>
-        <li>Sed do eiusmod tempor in is iste natus error sit cididunt</li>
-        <li>Ut enim ad minim ve is iste natus error sitniam</li>
-        </ul>
+        <table class="env">
+            <tr>
+                <td>服务器操作系统:</td>
+                <td><{$Think.env.OS}></td>
+            </tr>
+            <tr>
+                <td>PHP 版本</td>
+                <td><{$Think.PHP_VERSION}><td>
+            </tr>
+            <tr>
+                <td>GD 版本</td>
+                <td><{$gdVersion}></td>
+            </tr>
+            <tr>
+                <td>编码:</td>
+                <td><{:mb_detect_encoding(file_get_contents(__FILE__))}></td>
+            </tr>
+            <tr>
+                <td>Web 服务器:</td>
+                <td><{$Think.server.SERVER_SOFTWARE}></td>
+            </tr>
+            <tr>
+                <td>MySQL 版本:</td>
+                <td><{:mysql_get_server_info()}></td>
+            </tr>
+            <tr>
+                <td>时区设置:</td>
+                <td><{:date_default_timezone_get()}></td>
+            </tr>
+            <tr>
+                <td>文件上传的最大大小:</td>
+                <td><{:ini_get('upload_max_filesize')}></td>
+            </tr>
+        </table>
     </div>
 
     <div id="tab3" class="tabcontent">

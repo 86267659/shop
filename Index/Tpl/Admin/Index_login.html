@@ -5,7 +5,7 @@
         <script>
             var public = "__PUBLIC__";
             function show(obj){
-                obj.src = "{:U('verify',array('rand','"+Math.random()+"'))}";
+                obj.src = "<{:U('verify',array('rand','"+Math.random()+"',''))}>";
             }
         </script>
         <meta charset="utf-8">
@@ -31,10 +31,10 @@
 
         <div class="page-container">
             <h1>《捷哥浅谈PHP》商城后台</h1>
-            <form action="{:U('dologin','')}" method="post" style="text-align:left;">
+            <form action="<{:U('dologin','')}>" method="post" style="text-align:left;">
                 <input type="text" name="username" class="username" placeholder="请输入用户名">
                 <input type="password" name="password" class="password" placeholder="请输入密码">
-                <input type="text" name="vcode" class="username" placeholder="请输入验证码" style="width:150px;"><img src="{:U('verify','')}" style="margin-left:10px;margin-bottom:-15px;" onclick="show(this)" />
+                <input type="text" name="vcode" class="username" placeholder="请输入验证码" style="width:150px;"><img src="<{:U('Admin/Index/verify','','')}>" style="margin-left:10px;margin-bottom:-15px;" onclick="show(this)" />
                 <button type="submit">登陆</button>
                 <div class="error" style="text-align:center"><span>+</span></div>
             </form>

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,7 +26,7 @@ $(".trigger").click(function(){
 	<div class="header">
     <div class="title"><a href="#">《捷哥浅谈PHP》商城后台管理系统</a></div>
     
-    <div class="header_right">欢迎您回来 <{$Think.session.username}>, <a href="#" class="settings">设置</a> <a href="<{:U('Admin/Index/logout','')}>" class="logout">退出</a> </div>
+    <div class="header_right">欢迎您回来 <?php echo (session('username')); ?>, <a href="#" class="settings">设置</a> <a href="<?php echo U('Admin/Index/logout','');?>" class="logout">退出</a> </div>
     
     <div class="menu">
     <ul>
@@ -55,7 +55,49 @@ $(".trigger").click(function(){
     <div id="right_wrap">
     <div id="right_content">             
 
-    {__CONTENT__}
+    <h2>会员管理</h2>          
+<table id="rounded-corner">
+    <thead>
+    	<tr>
+        	<th></th>
+            <th>UID</th>
+            <th>用户名</th>
+            <th>注册时间</th>
+            <th>注册IP</th>
+            <th>登录时间</th>
+            <th>登录IP</th>
+            <th>是否管理员</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+    </thead>
+        <tfoot>
+    	<tr>
+        	<td colspan="12">分页</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <?php if(is_array($users)): foreach($users as $k=>$user): if($k%2 == 1): ?><tr class="odd">
+            <?php else: ?>
+               <tr class="even"><?php endif; ?>
+        	<td><input type="checkbox" name="" /></td>
+            <td><?php echo ($user["id"]); ?></td>
+            <td><?php echo ($user["username"]); ?></td>
+            <td><?php echo (date("Y-m-d",$user["rtime"])); ?></td>
+            <td><?php echo (long2ip($user["rip"])); ?></td>
+            <td><?php echo (date("Y-m-d",$user["logintime"])); ?></td>
+            <td><?php echo (long2ip($user["loginip"])); ?></td>
+            <td><font color='red'><?php echo ($user["ismanager"]); ?></forn></td>
+            <td><a href="#"><img src="__PUBLIC__/Admin/images/edit.png" alt="" title="" border="0" /></a></td>
+            <td><a href="#"><img src="__PUBLIC__/Admin/images/trash.gif" alt="" title="" border="0" /></a></td>
+        </tr><?php endforeach; endif; ?>
+    </tbody>
+</table>
+
+	<div class="form_sub_buttons">
+	<a href="#" class="button green">Edit selected</a>
+    <a href="#" class="button red">Delete selected</a>
+    </div>
 
          </div>
      </div><!-- end of right content-->
@@ -65,8 +107,8 @@ $(".trigger").click(function(){
     <h2>会员管理</h2>
     
         <ul>
-            <li><a href="<{:U('User/userList')}>" class="selected">会员列表</a></li>
-            <li><a href="<{:U('User/userAdd')}>">添加会员</a></li>
+            <li><a href="<?php echo U('User/userList');?>" class="selected">会员列表</a></li>
+            <li><a href="<?php echo U('User/userAdd');?>">添加会员</a></li>
             <li><a href="#">修改密码</a></li>
             <li><a href="#">设置管理员</a></li>
         </ul>

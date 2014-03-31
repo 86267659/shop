@@ -12,6 +12,9 @@ return array(
 	'DB_PREFIX'=>'shop_',
 	'SHOW_ERROR_MSG'=>true,
 	'SHOW_PAGE_TRACE'=>true,
-	'TMPL_FILE_DEPR'=>'_'
+	'TMPL_FILE_DEPR'=>'_',
+
+	'TMPL_L_DELIM'=>'<{',
+	'TMPL_R_DELIM'=>'}>',
 );
 ?>
