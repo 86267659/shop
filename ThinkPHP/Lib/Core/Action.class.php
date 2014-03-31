@@ -281,6 +281,7 @@ abstract class Action {
      * @return void
      */
     protected function error($message='',$jumpUrl='',$ajax=false) {
+        C('LAYOUT_ON',false);
         $this->dispatchJump($message,0,$jumpUrl,$ajax);
     }
 
@@ -293,6 +294,7 @@ abstract class Action {
      * @return void
      */
     protected function success($message='',$jumpUrl='',$ajax=false) {
+        C('LAYOUT_ON',false);
         $this->dispatchJump($message,1,$jumpUrl,$ajax);
     }
 
