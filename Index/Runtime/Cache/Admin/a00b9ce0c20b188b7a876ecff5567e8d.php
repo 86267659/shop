@@ -141,19 +141,19 @@ $(".trigger").click(function(){
             <li><a href="#">设置管理员</a></li>
         </ul>
         
-    <h2>Page Section</h2>
+    <h2>商品类别管理</h2>
     
         <ul>
-            <li><a href="#">Edit section</a></li>
-            <li><a href="#">Templates</a></li>
-            <li><a href="#">Clients</a></li>
-            <li><a href="#">Docs and info</a></li>
+            <li><a href="">商品分类管理</a></li>
+            <li><a href="<?php echo U('Category/add');?>">添加商品分类</a></li>
+            <li><a href="">商品品牌管理</a></li>
+            <li><a href="">添加商品品牌</a></li>
         </ul> 
         
-    <h2>User Settings</h2>
+    <h2>商品管理</h2>
     
         <ul>
-            <li><a href="#">Edit user</a></li>
+            <li><a href="<?php echo U('Product/add','','');?>">添加商品</a></li>
             <li><a href="#">Add users</a></li>
             <li><a href="#">Manage users</a></li>
             <li><a href="#">Help</a></li>

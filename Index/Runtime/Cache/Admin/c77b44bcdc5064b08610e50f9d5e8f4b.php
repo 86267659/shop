@@ -55,49 +55,33 @@ $(".trigger").click(function(){
     <div id="right_wrap">
     <div id="right_content">             
 
-    <h2>会员管理</h2>          
-<table id="rounded-corner">
-    <thead>
-    	<tr>
-        	<th></th>
-            <th>UID</th>
-            <th>用户名</th>
-            <th>注册时间</th>
-            <th>注册IP</th>
-            <th>登录时间</th>
-            <th>登录IP</th>
-            <th>是否管理员</th>
-            <th>编辑</th>
-            <th>删除</th>
-        </tr>
-    </thead>
-        <tfoot>
-    	<tr>
-        	<td colspan="12">分页</td>
-        </tr>
-    </tfoot>
-    <tbody>
-        <?php if(is_array($users)): foreach($users as $k=>$user): if($k%2 == 1): ?><tr class="odd">
-            <?php else: ?>
-               <tr class="even"><?php endif; ?>
-        	<td><input type="checkbox" name="" /></td>
-            <td><?php echo ($user["id"]); ?></td>
-            <td><?php echo ($user["username"]); ?></td>
-            <td><?php echo (date("Y-m-d",$user["rtime"])); ?></td>
-            <td><?php echo (long2ip($user["rip"])); ?></td>
-            <td><?php echo (date("Y-m-d",$user["logintime"])); ?></td>
-            <td><?php echo (long2ip($user["loginip"])); ?></td>
-            <td><font color='red'><?php echo ($user["ismanager"]); ?></forn></td>
-            <td><a href="#"><img src="__PUBLIC__/Admin/images/edit.png" alt="" title="" border="0" /></a></td>
-            <td><a href="#"><img src="__PUBLIC__/Admin/images/trash.gif" alt="" title="" border="0" /></a></td>
-        </tr><?php endforeach; endif; ?>
-    </tbody>
-</table>
+    <ul id="tabsmenu" class="tabsmenu">
+        <li class="active"><a href="#tab1">分类管理</a></li>
+    </ul>
+    <form action="<?php echo U('Category/doAdd','');?>" method="post">
+    <div id="tab1" class="tabcontent">
+        <h3>添加分类</h3>
+        
+        <div class="form">
+            
+            <div class="form_row">
+            <label>上级分类:</label>
+            <?php echo getOptions($options,'pid',0);?>
+            </div>
 
-	<div class="form_sub_buttons">
-	<a href="#" class="button green">Edit selected</a>
-    <a href="#" class="button red">Delete selected</a>
+            <div class="form_row">
+            <label>分类名称:</label>
+            <input type="text" class="form_input" name="name" />
+            </div>
+            
+            <div class="form_row">
+            <input type="submit" class="form_submit" value="添加" />
+            </div> 
+            <div class="clear"></div>
+        </div>
     </div>
+    </form>
+
 
          </div>
      </div><!-- end of right content-->
@@ -122,10 +106,10 @@ $(".trigger").click(function(){
             <li><a href="">添加商品品牌</a></li>
         </ul> 
         
-    <h2>User Settings</h2>
+    <h2>商品管理</h2>
     
         <ul>
-            <li><a href="#">Edit user</a></li>
+            <li><a href="<?php echo U('Product/add','','');?>">添加商品</a></li>
             <li><a href="#">Add users</a></li>
             <li><a href="#">Manage users</a></li>
             <li><a href="#">Help</a></li>

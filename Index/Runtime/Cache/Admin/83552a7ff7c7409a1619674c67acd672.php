@@ -56,44 +56,110 @@ $(".trigger").click(function(){
     <div id="right_content">             
 
     <ul id="tabsmenu" class="tabsmenu">
-        <li class="active"><a href="#tab1">会员管理</a></li>
+        <li class="active"><a href="#tab1">商品管理</a></li>
     </ul>
-    <form action="<?php echo U('Admin/User/doAdd','');?>" method="post">
+    <form action="<?php echo U('Product/doAdd','');?>" method="post" enctype="multipart/form-data">
     <div id="tab1" class="tabcontent">
-        <h3>添加会员</h3>
+        <h3>添加商品</h3>
+        
         <div class="form">
+
+            <div class="form_row">
+            <label>商品顺序:</label>
+            <input type="text" class="form_input" name="productorder" value="0" />
+            </div>
             
             <div class="form_row">
-            <label>用户名:</label>
-            <input type="text" class="form_input" name="username" />
-            </div>
-             
-            <div class="form_row">
-            <label>密码:</label>
-            <input type="password" class="form_input" name="password" />
+            <label>商品分类:</label>
+            <?php echo getOptions($cates,'cid',0);?>
             </div>
 
             <div class="form_row">
-            <label>确认密码:</label>
-            <input type="password" class="form_input" name="repass" />
-            </div>
-            
-            <div class="form_row">
-            <label>会员身份:</label>
-            <select class="form_select" name="ismanager">
-            <option value="1">管理员</option>
-            <option value="2" selected>普通会员</option>
-            </select>
+            <label>商品品牌:</label>
+            <?php echo getOptions($brands,'bid',0);?>
             </div>
 
             <div class="form_row">
-            <label>是否锁定:</label>
-            <select class="form_select" name="lock">
-            <option value="0">锁定</option>
-            <option value="1" selected>不锁定</option>
-            </select>
+            <label>商品名称:</label>
+            <input type="text" class="form_input" name="name" />
             </div>
-            
+
+            <div class="form_row">
+            <label>商品价格:</label>
+            <input type="text" class="form_input" name="price" />
+            </div>
+
+            <div class="form_row">
+            <label>会员价格:</label>
+            <input type="text" class="form_input" name="memberprice" />
+            </div>
+
+            <div class="form_row">
+            <label>促销价格:</label>
+            <input type="text" class="form_input" name="saleprice" />
+            </div>
+
+            <div class="form_row">
+            <label>促销开始时间:</label>
+            <input type="text" class="form_input" name="salestart" />
+            </div>
+
+            <div class="form_row">
+            <label>促销结束时间:</label>
+            <input type="text" class="form_input" name="salestart" />
+            </div>
+
+            <div class="form_row">
+            <label>促销个数:</label>
+            <input type="text" class="form_input" name="salecount" />
+            </div>
+
+            <div class="form_row">
+            <label>促销剩余个数:</label>
+            <input type="text" class="form_input" name="salesurplus" />
+            </div>
+
+            <div class="form_row">
+            <label>是否热卖:</label>
+            <?php echo getOptions(array(1=>'是',2=>'不是'),'ishot',2);?>
+            </div>
+
+            <div class="form_row">
+            <label>是否推荐:</label>
+            <?php echo getOptions(array(1=>'是',2=>'不是'),'isrecommend',2);?>
+            </div>
+
+            <div class="form_row">
+            <label>是否打折:</label>
+            <?php echo getOptions(array(1=>'是',2=>'不是'),'isdiscount',2);?>
+            </div>
+
+            <div class="form_row">
+            <label>折扣:</label>
+            <input type="text" class="form_input" name="discount" />
+            </div>
+
+            <div class="form_row">
+            <label>简介:</label>
+            <textarea class="form_textarea" name="summary" ></textarea>
+            </div>
+
+            <div class="form_row">
+            <label>详情:</label>
+            <textarea class="form_textarea" name="detail" ></textarea>
+            </div>
+
+            <div class="form_row">
+            <label>商品封面:</label>
+            <input type="file" class="form_input" name="face" style="border:0;bakvground:none;" />
+            </div>
+
+            <div class="form_row pic">
+            <label>商品图片:</label>
+            <input type="file" class="form_input" name="pic[]" style="border:0;bakvground:none;" />
+            </div>
+
+            <a class="form_row" href="javascript:void(0);" onclick="add()">点击添加一张</a>
             
             <div class="form_row">
             <input type="submit" class="form_submit" value="添加" />
@@ -103,6 +169,13 @@ $(".trigger").click(function(){
     </div>
     </form>
 
+
+    <script>
+        function add(){
+            var obj = $(".pic").eq(0).clone();
+            $(".pic").last().after(obj);
+        }
+    </script>
 
          </div>
      </div><!-- end of right content-->
@@ -127,10 +200,10 @@ $(".trigger").click(function(){
             <li><a href="">添加商品品牌</a></li>
         </ul> 
         
-    <h2>User Settings</h2>
+    <h2>商品管理</h2>
     
         <ul>
-            <li><a href="#">Edit user</a></li>
+            <li><a href="<?php echo U('Product/add','','');?>">添加商品</a></li>
             <li><a href="#">Add users</a></li>
             <li><a href="#">Manage users</a></li>
             <li><a href="#">Help</a></li>
