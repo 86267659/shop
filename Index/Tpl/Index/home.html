@@ -17,7 +17,7 @@
 	<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/Index/img/favicon/apple-touch-icon-precomposed.html">
 	<!-- // Favorite Icons -->
 	
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+	<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>-->
 	
 	<!-- GENERAL CSS FILES -->
 	<link rel="stylesheet" href="__PUBLIC__/Index/css/minified.css">
@@ -36,10 +36,13 @@
 	<link rel="stylesheet" href="__PUBLIC__/Index/css/owl.carousel.css">
 	<link rel="stylesheet" href="__PUBLIC__/Index/css/owl.theme.css">
 	<link href="__PUBLIC__/Index/css/flexslider.css" rel="stylesheet" />
+	<link rel="stylesheet" href="__PUBLIC__/Index/css/jquery.nouislider.css">
+	<link rel="stylesheet" href="__PUBLIC__/Index/css/isotope.css">
+	<link rel="stylesheet" href="__PUBLIC__/Index/css/innerpage.css">
 	<!-- // PARTICULAR PAGES CSS FILES -->
 	<link rel="stylesheet" href="__PUBLIC__/Index/css/responsive.css">
 </head>
-<body class="home">
+<body class="products-view">
 			
 	<!-- PAGE WRAPPER -->
 <div id="page-wrapper">
@@ -54,8 +57,8 @@
 						<!-- CONTACT INFO -->
 						<div class="contact-info">
 							<i class="iconfont-headphones round-icon"></i>
-							<strong>+444 (100) 1234</strong>
-							<span>(Mon- Fri: 09.00 - 21.00)</span>
+							<strong>客服:400-888-8888</strong>
+							<span>(周一至周日 早09:00 - 晚21:00)</span>
 							</div>
 						<!-- // CONTACT INFO -->
 					</div>
@@ -67,7 +70,7 @@
 									<form action="#" method="post">
 										<div class="input-iconed prepend">
 											<button class="input-icon"><i class="iconfont-search"></i></button>
-											<label for="input-search" class="placeholder">Search here…</label>
+											<label for="input-search" class="placeholder">搜索商品</label>
 											<input type="text" name="q" id="input-search" class="round-input full-width" required />
 										</div>
 									</form>
@@ -99,17 +102,17 @@
 								
 								<div id="sub-cart" class="sub-header">
 									<div class="cart-header">
-										<span>Your cart is currently empty.</span>
-										<small><a href="cart.html">(See All)</a></small>
+										<span>您的购物车暂时还是空的</span>
+										<small><a href="cart.html">(查看所有)</a></small>
 									</div>
 									<ul class="cart-items product-medialist unstyled clearfix"></ul>
 									<div class="cart-footer">
 										<div class="cart-total clearfix">
-											<span class="pull-left uppercase">Total</span>
-											<span class="pull-right total">$ 0</span>
+											<span class="pull-left uppercase">合计</span>
+											<span class="pull-right total">￥ 0</span>
 										</div>
 										<div class="text-right">
-											<a href="cart.html" class="btn btn-default btn-round view-cart">View Cart</a>
+											<a href="cart.html" class="btn btn-default btn-round view-cart">查看购物车</a>
 										</div>
 									</div>
 								</div>
@@ -133,30 +136,30 @@
 				<div class="main-header">
 					<!-- CURRENCY / LANGUAGE / USER MENU -->
 					<div class="actions">
-						<div class="center-xs">
+						<!--<div class="center-xs">-->
 							<!-- CURRENCY -->
-							<ul class="option-list unstyled">
+							<!--<ul class="option-list unstyled">
 								<li class="active"><a href="#" data-toggle="tooltip" title="USD - US Dollar">$</a></li>
 								<li><a href="#" data-toggle="tooltip" title="GBP - British Pound">£</a></li>
 								<li><a href="#" data-toggle="tooltip" title="EUR - Euro">€</a></li>
-							</ul>
+							</ul>-->
 							<!-- // CURRENCY -->
 							<!-- LANGUAGES -->
-							<ul class="option-list unstyled">
+							<!--<ul class="option-list unstyled">
 								<li class="active"><a href="#" data-toggle="tooltip" title="English">EN</a></li>
 								<li><a href="#" data-toggle="tooltip" title="French">FR</a></li>
 								<li><a href="#" data-toggle="tooltip" title="Deutsch">DE</a></li>
-							</ul>
+							</ul>-->
 							<!-- // LANGUAGES -->
-						</div>
+						<!--</div>-->
 						<div class="clearfix"></div>
 						<!-- USER RELATED MENU -->
 						<nav id="tiny-menu" class="clearfix">
 							<ul class="user-menu">
-								<li><a href="#">My Account</a></li>
-								<li><a href="cart.html">My Wishlist</a></li>
-								<li><a href="checkout.html">Checkout</a></li>
-								<li><a href="#">Log Out</a></li>
+								<li><a href="#">我的账户</a></li>
+								<li><a href="cart.html">我的收藏</a></li>
+								<li><a href="checkout.html">去结算</a></li>
+								<li><a href="#">退出</a></li>
 							</ul>
 						</nav>
 						<!-- // USER RELATED MENU -->
@@ -173,87 +176,50 @@
 					<nav id="site-menu" role="navigation">
 						<ul class="main-menu hidden-sm hidden-xs">
 							<li class="active">
-								<a href="{:U('Index/Index/index','','')}">首页</a>
+								<a href="<{:U('Index/Index/index','','')}>">首页</a>
 							</li>
-							<li>
-								<a href="products.html">Women</a>
-							</li>
-							<li>
-								<a href="products.html">Men</a>
+
+							<foreach name="menus" item="menu">
 								
+								<li>
+									<a href="<{:U('Product/productList')}>"><{$menu.name}></a>
+								<if condition="$menu['sons']">
 								<!-- MEGA MENU -->
-								<div class="mega-menu" data-col-lg="9" data-col-md="12">
+								<div class="mega-menu" data-col-lg="7" data-col-md="5">
 									<div class="row">
+
+									<foreach name='menu["sons"]' item="son">
 									
 										<div class="col-md-3">
-											<h4 class="menu-title">Clothing</h4>
+											<h4 class="menu-title"><{$son.name}></h4>
 											<ul class="mega-sub">
-												<li><a href="products.html">Casual Wear</a></li>
-												<li><a href="products.html">Evening Wear</a></li>
-												<li><a href="products.html">Formal Attire</a></li>
-												<li><a href="products.html">Womens Jeans</a></li>
-												<li><a href="products.html">Mens Jeans</a></li>
-												<li><a href="products.html">Fall Styles</a></li>
+												<foreach name="son['sons']" item="third">
+													<li><a href="products.html"><{$third.name}></a></li>
+												</foreach>
 											</ul>
 										</div>
-										
-										<div class="col-md-3">
-											<h4 class="menu-title">Accessories</h4>
-											<ul class="mega-sub">
-												<li><a href="products.html">Casual Wear</a></li>
-												<li><a href="products.html">Evening Wear</a></li>
-												<li><a href="products.html">Formal Attire</a></li>
-												<li><a href="products.html">Womens Jeans</a></li>
-												<li><a href="products.html">Mens Jeans</a></li>
-												<li><a href="products.html">Fall Styles</a></li>
-											</ul>
-										</div>
-										
-										<div class="col-md-3">
-											<h4 class="menu-title">Brands</h4>
-											<ul class="mega-sub">
-												<li><a href="products.html">Casual Wear</a></li>
-												<li><a href="products.html">Evening Wear</a></li>
-												<li><a href="products.html">Formal Attire</a></li>
-												<li><a href="products.html">Womens Jeans</a></li>
-												<li><a href="products.html">Mens Jeans</a></li>
-												<li><a href="products.html">Fall Styles</a></li>
-											</ul>
-										</div>
-										
-										<div class="col-md-3">
-											<div class="carousel slide m-b" data-ride="carousel">
-												<div class="carousel-inner">
-													<div class="item active">
-														<img src="__PUBLIC__/Index/images/men/slide1.jpg" alt="" />
-													</div>
-													<div class="item">
-														<img src="__PUBLIC__/Index/images/men/slide2.jpg" alt="" />
-													</div>
-												</div>
-											</div>
-											<h5 class="text-semibold uppercase m-b-sm">Featured Products - shared on weidea.net</h5>
-											<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque.</p>
-											<a href="products.html" class="btn btn-default btn-round">Go to Shop →</a>
-										</div>
+
+									</foreach>
 										
 									</div>
 								</div>
 								<!-- // MEGA MENU -->
-								
-							</li>
+								</if>
+								</li>
+							</foreach>
+
 							<li>
-								<a href="components.html">Components</a>
+								<a href="contact-us.html">联系我们</a>
 							</li>
+
 							<li>
-								<a href="store-locator.html">Store Locator</a>
+								<a href="contact-us.html">我的账户</a>
 							</li>
+
 							<li>
-								<a href="contact-us.html">Contact Us</a>
+								<a href="contact-us.html">购物车</a>
 							</li>
-							<li>
-								<a href="#">Buy Me!</a>
-							</li>
+							
 						</ul>
 						
 						<!-- MOBILE MENU -->
@@ -318,9 +284,9 @@
 	</header>
 	<!-- // SITE HEADER -->
 		
-		<!-- HOMEPAGE SLIDER -->
-		<div id="home-slider">
-			<div class="flexslider">
+<!-- HOMEPAGE SLIDER -->
+<div id="home-slider">
+	<div class="flexslider">
 	<ul class="slides">
 		<!-- THE FIRST SLIDE -->
 		<li>
@@ -505,7 +471,6 @@
 	});
 </script>		</div>
 		<!-- // HOMEPAGE SLIDER -->
-
 
 {__CONTENT__}
 
@@ -700,6 +665,9 @@
 	<!-- Particular Page Javascripts -->
 	<script src="__PUBLIC__/Index/js/owl.carousel.js"></script>
 	<script src="__PUBLIC__/Index/js/jquery.flexslider-min.js"></script>
+	<script src="__PUBLIC__/Index/js/jquery.nouislider.js"></script>
+	<script src="__PUBLIC__/Index/js/jquery.isotope.min.js"></script>
+	<script src="__PUBLIC__/Index/js/products.js"></script>
 	<!-- // Particular Page Javascripts -->
 </body>
 </html>

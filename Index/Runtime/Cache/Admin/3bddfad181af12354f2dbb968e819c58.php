@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,7 +26,7 @@ $(".trigger").click(function(){
 	<div class="header">
     <div class="title"><a href="#">《捷哥浅谈PHP》商城后台管理系统</a></div>
     
-    <div class="header_right">欢迎您回来 <{$Think.session.username}>, <a href="#" class="settings">设置</a> <a href="<{:U('Admin/Index/logout','')}>" class="logout">退出</a> </div>
+    <div class="header_right">欢迎您回来 <?php echo (session('username')); ?>, <a href="#" class="settings">设置</a> <a href="<?php echo U('Admin/Index/logout','');?>" class="logout">退出</a> </div>
     
     <div class="menu">
     <ul>
@@ -55,7 +55,38 @@ $(".trigger").click(function(){
     <div id="right_wrap">
     <div id="right_content">             
 
-    {__CONTENT__}
+    <ul id="tabsmenu" class="tabsmenu">
+        <li class="active"><a href="#tab1">品牌管理</a></li>
+    </ul>
+    <form action="<?php echo U('Brand/doAdd','');?>" method="post" enctype="multipart/form-data">
+    <div id="tab1" class="tabcontent">
+        <h3>添加品牌</h3>
+        
+        <div class="form">
+
+            <div class="form_row">
+            <label>品牌名称:</label>
+            <input type="text" class="form_input" name="name" />
+            </div>
+
+            <div class="form_row">
+            <label>品牌简介:</label>
+            <textarea class="form_textarea" name="des" ></textarea>
+            </div>
+
+            <div class="form_row">
+            <label>品牌图片:</label>
+            <input type="file" class="form_input" name="pic" style="border:0;bakvground:none;" />
+            </div>
+            
+            <div class="form_row">
+            <input type="submit" class="form_submit" value="添加" />
+            </div> 
+            <div class="clear"></div>
+        </div>
+    </div>
+    </form>
+
 
          </div>
      </div><!-- end of right content-->
@@ -65,8 +96,8 @@ $(".trigger").click(function(){
     <h2>会员管理</h2>
     
         <ul>
-            <li><a href="<{:U('User/userList')}>" class="selected">会员列表</a></li>
-            <li><a href="<{:U('User/userAdd')}>">添加会员</a></li>
+            <li><a href="<?php echo U('User/userList');?>" class="selected">会员列表</a></li>
+            <li><a href="<?php echo U('User/userAdd');?>">添加会员</a></li>
             <li><a href="#">修改密码</a></li>
             <li><a href="#">设置管理员</a></li>
         </ul>
@@ -75,15 +106,15 @@ $(".trigger").click(function(){
     
         <ul>
             <li><a href="">商品分类管理</a></li>
-            <li><a href="<{:U('Category/add')}>">添加商品分类</a></li>
+            <li><a href="<?php echo U('Category/add');?>">添加商品分类</a></li>
             <li><a href="">商品品牌管理</a></li>
-            <li><a href="<{:U('Brand/add')}>">添加商品品牌</a></li>
+            <li><a href="<?php echo U('Brand/add');?>">添加商品品牌</a></li>
         </ul> 
         
     <h2>商品管理</h2>
     
         <ul>
-            <li><a href="<{:U('Product/add','','')}>">添加商品</a></li>
+            <li><a href="<?php echo U('Product/add','','');?>">添加商品</a></li>
             <li><a href="#">Add users</a></li>
             <li><a href="#">Manage users</a></li>
             <li><a href="#">Help</a></li>

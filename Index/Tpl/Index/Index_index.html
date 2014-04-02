@@ -2,49 +2,17 @@
 <main id="main-content" role="main">
 	
 	<!-- PROMO BOXES -->
-	<<section class="section promos">
+	<section class="section promos">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="promo accent-background first-child first-row animated" data-animation="fadeInLeft">
-						<div class="inner text-center">
-							<h1 class="uppercase text-semibold">
-								<a href="#">
-									<span class="inverse-color">Sale</span> Up to 35% <span class="inverse-color">OFF</span>
-								</a>
-							</h1>
-							<h5 class="uppercase">Summer collection 2013</h5>
-						</div>
-					</div>
+			
+			<foreach name="brands" item="brand">
+
+				<div style="float:left;border:2px solid #ccc;margin:10px;">
+					<a href="<{:U('Product/productList',array('bid'=>$brand['id']))}>"><img src="__PUBLIC__/Uploads/Brand/thumb_<{$brand.pic}>" /></a>
 				</div>
 			
-				<div class="col-md-4">
-					<div class="promo inverse-background first-row animated" data-animation="fadeInDown" style="background: url('__PUBLIC__/Index/images/demo/P2200214.jpg') no-repeat; background-size: 100%;">
-						<div class="inner text-center np">
-							<div class="ribbon">
-								<h6 class="nmb">New Arrivals</h6>
-								<h5 class="text-semibold uppercase nmb">Leather Fashion</h5>
-								<div class="space10"></div>
-								<a href="products.html" class="with-icon prepend-icon"><i class="iconfont-caret-right"></i><span> Shop Now</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-				<div class="col-md-4">
-					<div class="promo inverse-background first-row animated" data-animation="fadeInRight">
-						<div class="inner text-center">
-							<h1 class="uppercase text-bold">
-								<a href="#">
-									Free <span class="inverse-color">Shipping</span>
-								</a>
-							</h1>
-							<h5 class="uppercase">On oder over $2,000</h5>
-						</div>
-					</div>
-				</div>
-			
-			</div>
+			</foreach>
+
 		</div>
 	</section>
 	<!-- // PROMO BOXES -->

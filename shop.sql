@@ -65,6 +65,14 @@ CREATE TABLE `shop_pic`(
 	`pic` varchar(255) not null default 'default.gif',
 	`type` tinyint not null default 1
 )engine=myisam default charset=utf8;
+
+DROP TABLE IF EXISTS `shop_brand`;
+create table `shop_brand`(
+	`id` int unsigned not null auto_increment primary key,
+    `name` varchar(300) not null,
+    `des` text,
+    `pic` varchar(255) not null default 'default.gif'
+)engine=myisam default charset=utf8;
 	
 	
 	

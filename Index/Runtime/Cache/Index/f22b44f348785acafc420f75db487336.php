@@ -461,371 +461,314 @@
 </script>		</div>
 		<!-- // HOMEPAGE SLIDER -->
 
+<!-- BREADCRUMB -->
+<div class="breadcrumb-container">
+	<div class="container">
+		<div class="relative">
+			<ul class="bc push-up unstyled clearfix">
+				<li><a href="index-2.html">主页</a></li>
+				<li class="active">产品</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- // BREADCRUMB -->
 <!-- SITE MAIN CONTENT -->
 <main id="main-content" role="main">
-	
-	<!-- PROMO BOXES -->
-	<section class="section promos">
-		<div class="container">
+	<div class="container">
+		<div class="row">
 			
-			<?php if(is_array($brands)): foreach($brands as $key=>$brand): ?><div style="float:left;border:2px solid #ccc;margin:10px;">
-					<a href="<?php echo U('Product/productList',array('bid'=>$brand['id']));?>"><img src="__PUBLIC__/Uploads/Brand/thumb_<?php echo ($brand["pic"]); ?>" /></a>
-				</div><?php endforeach; endif; ?>
-
-		</div>
-	</section>
-	<!-- // PROMO BOXES -->
-	
-	<!-- FEATURED PRODUCTS -->
-	<section class="section featured visible-items-4">
-		<div class="container">
-			<div class="row">
-				<header class="section-header clearfix col-sm-offset-3 col-sm-6">
-					<h3 class="section-title">热卖商品</h3>
-					<p class="section-teaser">最新特色商品等你来抢</p>
-				</header>
-				
-				<div class="clearfix"></div>
-				
-				<!-- BEGIN CAROUSEL -->
-				<div id="featured-products" class="add-cart" data-product=".product" data-thumbnail=".entry-media .thumb" data-title=".entry-title > a" data-url=".entry-title > a" data-price=".entry-price > .price">
-				
-					<div class="owl-controls clickable top">
-						<div class="owl-buttons">
-							<div class="owl-prev"><i class="iconfont-angle-left"></i></div>
-							<div class="owl-next"><i class="iconfont-angle-right"></i></div>
-						</div>
-					</div>
+			<div class="m-t-b clearfix">
+				<!-- SIDEBAR -->
+				<aside class="col-xs-12 col-sm-4 col-md-3">
+					<section class="sidebar push-up">
 					
-					<div class="owl-carousel owl-theme" data-visible-items="4" data-navigation="true" data-lazyload="true">
-
-
-					<?php if(is_array($products)): foreach($products as $key=>$product): ?><div class="product" data-product-id="<?php echo ($product["id"]); ?>">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Uploads/products/<?php echo md5($product['id']);?>/thumb_<?php echo ($product["face"]); ?>" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<div class="circle ribbon ribbon-sale">Sale</div>
-										</li>
-										<li>
+						<!-- CATEGORIES -->
+						<section class="side-section bg-white">
+							<header class="side-section-header">
+								<h3 class="side-section-title">商品分类</h3>
+							</header>
+							<div class="side-section-content">
+								<ul id="category-list" class="vmenu unstyled">
+									<?php if(is_array($categories)): foreach($categories as $key=>$category): ?><li>
+										<input type="checkbox" id="check-<?php echo ($category["name"]); ?>" class="prettyCheckable" data-label="<?php echo ($category["name"]); ?>" data-labelPosition="right" value="<?php echo ($category["name"]); ?>" />
 										
-											<a href="__PUBLIC__/Uploads/products/<?php echo md5($product['id']);?>/<?php echo ($product["face"]); ?>" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="4.5" step="0.5" id="backing1" />
-										<div class="rateit" data-rateit-backingfld="#backing1" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
+										<ul>
+										<?php if(is_array($category['sons'])): foreach($category['sons'] as $key=>$son): ?><li><input type="checkbox" id="check-<?php echo ($son["name"]); ?>" class="prettyCheckable" data-label="<?php echo ($son["name"]); ?>" data-labelPosition="right" value="<?php echo ($son["name"]); ?>" /></li><?php endforeach; endif; ?>	
+										</ul>
+									</li><?php endforeach; endif; ?>
+								</ul>
+							</div>
+							<footer class="side-section-footer text-center hide">
+								<button type="button" id="btn-filter-cat" class="btn btn-primary btn-round uppercase">Clear Filters</button>
+							</footer>
+						</section>
+						<!-- // CATEGORIES -->
+						
+						<!-- BRANDS -->
+						<section class="side-section bg-white">
+							<header class="side-section-header">
+								<h3 class="side-section-title">所有品牌</h3>
+							</header>
+							<div class="side-section-content">
+								<ul id="brands-list" class="vmenu unstyled">
+								
+									<li>
+										<input type="checkbox" id="check-brand1" class="prettyCheckable" data-label="Because" data-labelPosition="right" value="brand1" />
+									</li>
+								
+								</ul>
+							</div>
+							<footer class="side-section-footer text-center hide">
+								<button type="button" id="btn-filter-brand" class="btn btn-primary btn-round uppercase">Clear Filters</button>
+							</footer>
+						</section>
+						<!-- // BRANDS -->
+						
+						<!-- PRODUCT FILTER -->
+						<section class="side-section bg-white">
+							<header class="side-section-header">
+								<h3 class="side-section-title">Filter</h3>
+							</header>
+							
+							<!-- PRICE RANGE SLIDER -->
+							<div id="filter-by-price" class="side-section-content">
+								<h4 class="side-section-subheader">Filter By Price</h4>
+								<div class="range-slider-container">
+									<div class="range-slider" data-min="0" data-max="2000" data-step="10" data-currency="$"></div>
+									<div class="range-slider-value clearfix">
+										<span>Price: &ensp;</span>
+										<span class="min"></span>
+										<span class="max"></span>
 									</div>
 								</div>
 							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#"><?php echo ($product["name"]); ?></a>
-								</h5>
-								<div class="entry-price">
-									<s class="entry-discount">￥ <?php echo ($product["price"]); ?></s>
-									<strong class="accent-color price">￥ <?php echo ($product["saleprice"]); ?></strong>
-								</div>
-								<div class="entry-links clearfix">
-									<a href="#" class="pull-left m-r">+ Add to Wishlist</a>
-									<a href="#" class="pull-right">+ Add to Compare</a>
+							<!-- // PRICE RANGE SLIDER -->
+							
+							<!-- FILTER BY SIZE -->
+							<div id="filter-by-size" class="side-section-content">
+								<h4 class="side-section-subheader">Filter By Size</h4>
+								<ul class="inline-li li-m-lg text-center unstyled">
+									<li>
+										<a href="#" class="round-icon" data-toggle="tooltip" data-title="X-Small / UK 8"><small>XS</small></a>
+										<input type="checkbox" class="filter-checkbox filter-size" value="XS" />
+									</li>
+									<li>
+										<a href="#" class="round-icon" data-toggle="tooltip" data-title="Small / UK 10"><small>S</small></a>
+										<input type="checkbox" class="filter-checkbox filter-size" value="S" />
+									</li>
+									<li>
+										<a href="#" class="round-icon" data-toggle="tooltip" data-title="Medium / UK 12"><small>M</small></a>
+										<input type="checkbox" class="filter-checkbox filter-size" value="M" />
+									</li>
+									<li>
+										<a href="#" class="round-icon" data-toggle="tooltip" data-title="Large / UK 14"><small>L</small></a>
+										<input type="checkbox" class="filter-checkbox filter-size" value="L" />
+									</li>
+									<li>
+										<a href="#" class="round-icon" data-toggle="tooltip" data-title="X-Large / UK 16"><small>XL</small></a>
+										<input type="checkbox" class="filter-checkbox filter-size" value="XL" />
+									</li>
+									<li>
+										<a href="#" class="round-icon" data-toggle="tooltip" data-title="XX-Large"><small>XXL</small></a>
+										<input type="checkbox" class="filter-checkbox filter-size" value="XXL" />
+									</li>
+								</ul>
+							</div>
+							<!-- // FILTER BY SIZE -->
+							
+							<!-- FILTER BY COLOR -->
+							<div id="filter-by-color" class="side-section-content">
+								<h4 class="side-section-subheader">Filter By Colour</h4>
+								<ul class="inline-li li-m-sm text-center unstyled">
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Black" style="background: #000;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="black" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="White" style="background: #fff; border-color: #acacac;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="white" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Green" style="background: #60bd0d;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="green" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Red" style="background: #ff5757;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="red" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Blue" style="background: #0d9abd;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="blue" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Brown" style="background: #c57313;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="brown" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Purple" style="background: #a613c5;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="purple" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Silver" style="background: #e5e5e8;"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="silver" />
+									</li>
+									<li>
+										<a href="#" class="round-icon color-box" data-toggle="tooltip" data-title="Patternie" style="background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkYGD4D8QgwAgjMASgCiAqwcqgACwAAIrDBAOqGrGNAAAAAElFTkSuQmCC');"></a>
+										<input type="checkbox" class="filter-checkbox filter-color" value="patternie" />
+									</li>
+								</ul>
+							</div>
+							<!-- // FILTER BY COLOR -->
+						</section>
+						<!-- // PRODUCT FILTER -->
+						
+						<!-- BEST SELLERS -->
+						<section class="side-section bg-white">
+							<header class="side-section-header">
+								<h3 class="side-section-title">Best Sellers</h3>
+							</header>
+							<div class="side-section-content">
+								<ul class="product-medialist li-m-t unstyled clearfix">
+									<li>
+										<div class="item clearfix">
+											<a href="__PUBLIC__/Index/images/women/basic/688086-0286_1.jpg" data-toggle="lightbox" class="entry-thumbnail">
+												<img src="__PUBLIC__/Index/images/women/basic/688086-0286_1_t.jpg" alt="Inceptos orci hac libero" />
+											</a>
+											<h5 class="entry-title"><a href="product.html">Inceptos orci hac libero</a></h5>
+											<s class="entry-discount m-r-sm"><span class="text-sm">$ 350.00</span></s>
+											<span class="entry-price accent-color">$ 250.00</span>
+										</div>
+									</li>
+									<li>
+										<div class="item clearfix">
+											<a href="__PUBLIC__/Index/images/women/basic/589550-0014_1.jpg" data-toggle="lightbox" class="entry-thumbnail">
+												<img src="__PUBLIC__/Index/images/women/basic/589550-0014_1_t.jpg" alt="Inceptos orci hac libero" />
+											</a>
+											<h5 class="entry-title"><a href="product.html">Inceptos orci hac libero</a></h5>
+											<span class="entry-price">$ 350.00</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<!-- // BEST SELLERS -->
+						
+						<!-- PROMO -->
+						<div class="promo inverse-background" style="background: url('__PUBLIC__/Index/images/demo/Barn-Dress-Girl_t.jpg') no-repeat; background-size: auto 100%;">
+							<div class="inner text-center np">
+								<div class="ribbon">
+									<h6 class="nmb">New Arrivals</h6>
+									<h5 class="text-semibold uppercase nmb">Leather Fashion</h5>
+									<div class="space10"></div>
+									<a href="products.html" class="with-icon prepend-icon"><i class="iconfont-caret-right"></i><span> Shop Now</span></a>
 								</div>
 							</div>
-						</div><?php endforeach; endif; ?>
-					</div>
+						</div>
+						<!-- // PROMO -->
+						
+					</section>
+				</aside>
+				<!-- // SIDEBAR -->
+				<section class="col-xs-12 col-sm-8 col-md-9">
+					
+					<section class="products-wrapper">
+						<!-- DISPLAY MODE - NUMBER OF ITEMS TO BE DISPLAY - PAGINATION -->
+						<header class="products-header">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-6 center-xs">
+									<!-- DISPLAY MODE -->
+									<ul class="unstyled inline-li li-m-r-l-sm pull-left">
+										<li><a class="round-icon active" href="#" data-toggle="tooltip" data-layout="grid" data-title="Switch to List Grid Mode"><i class="iconfont-th"></i></a></li>
+										<li><a class="round-icon" href="#" data-toggle="tooltip" data-layout="list" data-title="Switch to List View Mode"><i class="iconfont-list"></i></a></li>
+									</ul>
+									<!-- // DISPLAY MODE -->
+									
+									<!-- NUMBER OF ITEMS TO BE DISPLAY -->
+									<div class="pull-right m-l-lg">
+										<span class="inline-middle m-r-sm text-xs">Show</span>
+										<div class="inline-middle styled-dd">
+											<select>
+												<option value="9">9</option>
+												<option value="12" selected>12</option>
+												<option value="24">24</option>
+												<option value="36">36</option>
+											</select>
+										</div>
+									</div>
+									<!-- // NUMBER OF ITEMS TO BE DISPLAY -->
+								</div>
+								<div class="space30 visible-xs"></div>
+								<!-- PAGINATION -->
+								<div class="col-xs-12 col-sm-12 col-md-6 center-xs">
+									<ul class="paginator li-m-r-l pull-right">
+										<li><a class="round-icon" href="#" data-toggle="tooltip" data-title="Previous Page"><i class="iconfont-angle-left"></i></a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a class="round-icon" href="#" data-toggle="tooltip" data-title="Next Page"><i class="iconfont-angle-right"></i></a></li>
+									</ul>
+								</div>
+								<!-- // PAGINATION -->
+							</div>
+						</header>
+						<!-- // DISPLAY MODE - NUMBER OF ITEMS TO BE DISPLAY - PAGINATION -->
+						
+						<!-- PRODUCT LAYOUT -->
+						<div class="products-layout grid m-t-b add-cart" data-product=".product" data-thumbnail=".entry-media .thumb" data-title=".entry-title > a" data-url=".entry-title > a" data-price=".entry-price > .price">
 
+							<?php if(is_array($products)): foreach($products as $key=>$product): ?><div class="product" data-product-id="<?php echo ($product["id"]); ?>" data-category="<?php echo ($nodes); ?>" data-brand="brand<?php echo ($product["bid"]); ?>" data-price="250" data-colors="red|blue|black|white" data-size="S|M|L">
+								<div class="entry-media">
+									<img data-src="__PUBLIC__/Uploads/products/<?php echo md5($product['id']);?>/thumb_<?php echo ($product["face"]); ?>" alt="" class="lazyLoad thumb" />
+									<div class="hover">
+										<a href="product.html" class="entry-url"></a>
+										<ul class="icons unstyled">
+											<li>
+												<div class="circle ribbon ribbon-sale">Sale</div>
+											</li>
+											<li>
+												<a href="__PUBLIC__/Uploads/products/<?php echo md5($product['id']);?>/<?php echo ($product["face"]); ?>" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
+											</li>
+											<li>
+												<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
+											</li>
+										</ul>
+										<div class="rate-bar">
+											<input type="range" value="4.5" step="0.5" id="backing1" />
+											<div class="rateit" data-rateit-backingfld="#backing1" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
+										</div>
+									</div>
+								</div>
+								<div class="entry-main">
+									<h5 class="entry-title">
+										<a href="product.html"><?php echo ($product["name"]); ?></a>
+									</h5>
+									<div class="entry-description visible-list">
+										<p><?php echo ($product["summary"]); ?></p>
+									</div>
+									<div class="entry-price">
+										<s class="entry-discount">￥ <?php echo ($product["saleprice"]); ?></s>
+										<strong class="accent-color price">￥ <?php echo ($product["price"]); ?></strong>
+										<a href="#" class="btn btn-round btn-default add-to-cart visible-list">添加到购物车</a>
+									</div>
+									<div class="entry-links clearfix">
+										<a href="#" class="pull-left m-r">+ 添加到收藏夹</a>
+										<a href="#" class="pull-right">+ Add to Compare</a>
+									</div>
+								</div>
+							</div><?php endforeach; endif; ?>
+							
+						</div>
+						<!-- // PRODUCT LAYOUT -->
+					</section>
 					
-						
-				</div>
-				<!-- // END CAROUSEL -->
-				
+				</section>
 			</div>
+			
 		</div>
-	</section>
-	<!-- // FEATURED PRODUCTS -->
-	
-	<!-- NEW ARRIVAL PRODUCTS -->
-	<section class="section new-arrivals visible-items-5">
-		<div class="container">
-			<div class="row">
-				<header class="section-header clearfix col-sm-offset-3 col-sm-6">
-					<h3 class="section-title">New arrivals</h3>
-					<p class="section-teaser">Lorem ipsum dolor sit amet, consectetur adipiscing elit ac lobortis lacus</p>
-				</header>
-				
-				<div class="clearfix"></div>
-				
-				<!-- BEGIN CAROUSEL -->
-				<div id="new-arrivals-products" class="add-cart" data-product=".product" data-thumbnail=".entry-media .thumb" data-title=".entry-title > a" data-url=".entry-title > a" data-price=".entry-price > .price">
-				
-					<div class="owl-controls clickable outside">
-						<div class="owl-buttons">
-							<div class="owl-prev"><i class="iconfont-angle-left"></i></div>
-							<div class="owl-next"><i class="iconfont-angle-right"></i></div>
-						</div>
-					</div>
-					
-					<div class="owl-carousel owl-theme" data-visible-items="5" data-navigation="true" data-lazyload="true">
-						<div class="product" data-product-id="9">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/jacket/271865-0286_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<div class="circle ribbon ribbon-sale">Sale</div>
-										</li>
-										<li>
-											<a href="__PUBLIC__/Index/images/men/jacket/271865-0286_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="4.5" step="0.5" id="backing9" />
-										<div class="rateit" data-rateit-backingfld="#backing9" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<s class="entry-discount">$ 350.00</s>
-									<strong class="accent-color price">$ 250.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="10">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/jacket/634082-0014_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<a href="__PUBLIC__/Index/images/men/jacket/634082-0014_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="4" step="0.5" id="backing10" />
-										<div class="rateit" data-rateit-backingfld="#backing10" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<strong class="price">$ 350.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="11">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/jacket/217365-0014_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<div class="circle ribbon ribbon-new">New</div>
-										</li>
-										<li>
-											<a href="__PUBLIC__/Index/images/men/jacket/217365-0014_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="3.5" step="0.5" id="backing11" />
-										<div class="rateit" data-rateit-backingfld="#backing11" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<strong class="price">$ 450.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="12">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/blazer/105797-1056_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<a href="__PUBLIC__/Index/images/men/blazer/105797-1056_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="5" step="0.5" id="backing12" />
-										<div class="rateit" data-rateit-backingfld="#backing12" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<strong class="price">$ 350.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="13">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/jumper/271866-0014_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<div class="circle ribbon ribbon-sale">Sale</div>
-										</li>
-										<li>
-											<a href="__PUBLIC__/Index/images/men/jumper/271866-0014_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="4.5" step="0.5" id="backing13" />
-										<div class="rateit" data-rateit-backingfld="#backing13" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<s class="entry-discount">$ 350.00</s>
-									<strong class="accent-color price">$ 250.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="14">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/shirt/803500-6989_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<a href="__PUBLIC__/Index/images/men/shirt/803500-6989_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="4" step="0.5" id="backing14" />
-										<div class="rateit" data-rateit-backingfld="#backing14" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<strong class="price">$ 350.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="15">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/shirt/217360-0014_1_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<div class="circle ribbon ribbon-new">New</div>
-										</li>
-										<li>
-											<a href="__PUBLIC__/Index/images/men/shirt/217360-0014_1.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="3.5" step="0.5" id="backing15" />
-										<div class="rateit" data-rateit-backingfld="#backing15" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<strong class="price">$ 450.00</strong>
-								</div>
-							</div>
-						</div>
-						
-						<div class="product" data-product-id="16">
-							<div class="entry-media">
-								<img data-src="__PUBLIC__/Index/images/men/accessories/000095-0014_2_t.jpg" alt="" class="lazyOwl thumb" />
-								<div class="hover">
-									<a href="product.html" class="entry-url"></a>
-									<ul class="icons unstyled">
-										<li>
-											<a href="__PUBLIC__/Index/images/men/accessories/000095-0014_2.jpg" class="circle" data-toggle="lightbox"><i class="iconfont-search"></i></a>
-										</li>
-										<li>
-											<a href="#" class="circle add-to-cart"><i class="iconfont-shopping-cart"></i></a>
-										</li>
-									</ul>
-									<div class="rate-bar">
-										<input type="range" value="5" step="0.5" id="backing16" />
-										<div class="rateit" data-rateit-backingfld="#backing16" data-rateit-starwidth="12" data-rateit-starheight="12" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5"></div>
-									</div>
-								</div>
-							</div>
-							<div class="entry-main">
-								<h5 class="entry-title">
-									<a href="#">Inceptos orci hac libero</a>
-								</h5>
-								<div class="entry-price">
-									<strong class="price">$ 350.00</strong>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-				<!-- // END CAROUSEL -->
-				
-			</div>
-		</div>
-	</section>
-	<!-- // NEW ARRIVAL PRODUCTS -->
-	
+	</div>
 </main>
 <!-- // SITE MAIN CONTENT -->
 

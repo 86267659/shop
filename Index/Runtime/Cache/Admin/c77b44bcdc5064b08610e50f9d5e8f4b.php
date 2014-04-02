@@ -103,7 +103,7 @@ $(".trigger").click(function(){
             <li><a href="">商品分类管理</a></li>
             <li><a href="<?php echo U('Category/add');?>">添加商品分类</a></li>
             <li><a href="">商品品牌管理</a></li>
-            <li><a href="">添加商品品牌</a></li>
+            <li><a href="<?php echo U('Brand/add');?>">添加商品品牌</a></li>
         </ul> 
         
     <h2>商品管理</h2>

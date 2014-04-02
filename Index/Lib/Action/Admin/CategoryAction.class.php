@@ -1,7 +1,7 @@
 <?php
 	class CategoryAction extends Action{
 		public function add(){
-			$options = M('Category')->where('type=1')->order('concat(path,"-",id)')->select();
+			$options = M('Category')->order('concat(path,"-",id)')->select();
 			$data[0] = '顶级分类';
 			foreach($options as $val){
 				$indent = "";
@@ -28,7 +28,6 @@
 			$data['name'] = $name;
 			$data['pid'] = $pid;
 			$data['path'] = $path;
-			$data['type'] = 1;
 			if($cate->data($data)->add()){
 				$this->success('添加成功',U('Category/cateList',''));
 			}else{

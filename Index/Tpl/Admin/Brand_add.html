@@ -1,0 +1,31 @@
+<ul id="tabsmenu" class="tabsmenu">
+        <li class="active"><a href="#tab1">品牌管理</a></li>
+    </ul>
+    <form action="<{:U('Brand/doAdd','')}>" method="post" enctype="multipart/form-data">
+    <div id="tab1" class="tabcontent">
+        <h3>添加品牌</h3>
+        
+        <div class="form">
+
+            <div class="form_row">
+            <label>品牌名称:</label>
+            <input type="text" class="form_input" name="name" />
+            </div>
+
+            <div class="form_row">
+            <label>品牌简介:</label>
+            <textarea class="form_textarea" name="des" ></textarea>
+            </div>
+
+            <div class="form_row">
+            <label>品牌图片:</label>
+            <input type="file" class="form_input" name="pic" style="border:0;bakvground:none;" />
+            </div>
+            
+            <div class="form_row">
+            <input type="submit" class="form_submit" value="添加" />
+            </div> 
+            <div class="clear"></div>
+        </div>
+    </div>
+    </form>

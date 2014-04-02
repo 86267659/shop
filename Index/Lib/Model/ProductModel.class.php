@@ -1,13 +1,19 @@
 <?php
 	class ProductModel extends RelationModel{
 		Protected $_link = array(
-				'Productcategory'=>array(
-					'mapping_type'=>HAS_MANY,
-					'class_name'=>'Productcategory',
-					'foreign_key'=>'pid',
-					'mapping_fields'=>'cid',
-					//'as_fields'=>'cid:cname',
-					//'condition'=>'type=1',
+				'Category'=>array(
+					'mapping_type'=>BELONGS_TO,
+					'class_name'=>'Category',
+					'foreign_key'=>'cid',
+					'mapping_fields'=>'name',
+					'as_fields'=>'name:cname',
+					),
+				'Brand'=>array(
+					'mapping_type'=>BELONGS_TO,
+					'class_name'=>'Brand',
+					'foreign_key'=>'bid',
+					'mapping_fields'=>'name',
+					'as_fields'=>'name:bname',
 					),
 				'Pic'=>array(
 					'mapping_type'=>HAS_MANY,

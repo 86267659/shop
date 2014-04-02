@@ -2,18 +2,17 @@
 	class ProductAction extends Action{
 		public function add(){
 			$options = M('Category')->order('concat(path,"-",id)')->select();
-			$brand[0] = '无品牌';
+			$brands = M('Brand')->select();
 			foreach($options as $val){
-				if($val['type']=='分类'){
-					$indent = "";
-					$num = count(explode('-',$val['path']));
-					for($i=1;$i<$num*2;$i++){
-						$indent .= "&nbsp;";
-					}
-					$data[$val['id']] = $indent.$val['name'];
-				}else{
-					$brand[$val['id']] = $val['name'];
+				$indent = "";
+				$num = count(explode('-',$val['path']));
+				for($i=1;$i<$num*2;$i++){
+					$indent .= "&nbsp;";
 				}
+				$data[$val['id']] = $indent.$val['name'];
+			}
+			foreach($brands as $val){
+				$brand[$val['id']] = $val['name'];
 			}
 			$this->cates = $data;
 			$this->brands = $brand;
@@ -53,9 +52,9 @@
 
 				}
 
-				if(M("productcate")->add(array('pid'=>$id,'cid'=>I('post.cid')))){
+				//if(M("productcate")->add(array('pid'=>$id,'cid'=>I('post.cid'))){
 					$this->success('添加成功！');
-				}
+				//}
 			}else{
 				$this->error('添加失败！');
 			}
